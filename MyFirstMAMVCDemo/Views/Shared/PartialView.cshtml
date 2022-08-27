@@ -1,2 +1,9 @@
-﻿
-Jigar Thakkar
+﻿@model MyFirstMAMVCDemo.Models.UserModels
+
+@{
+    var a = Model.UserName;
+}
+
+
+@Model.UserName
+@*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@

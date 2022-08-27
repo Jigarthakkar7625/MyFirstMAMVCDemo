@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MyFirstMAMVCDemo.Controllers
 {
+    //[HandleError(View = "Error")]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -27,7 +28,7 @@ namespace MyFirstMAMVCDemo.Controllers
             //InsertRecord();
 
             //GetRecord();
-           
+
 
             return View();
         }
@@ -46,6 +47,12 @@ namespace MyFirstMAMVCDemo.Controllers
 
             con.Close();
 
+
+        }
+
+        public ActionResult RenderPartialView()
+        {
+            return PartialView("PartialView");
 
         }
 

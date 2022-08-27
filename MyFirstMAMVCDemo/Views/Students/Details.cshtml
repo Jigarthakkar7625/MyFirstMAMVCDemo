@@ -1,0 +1,67 @@
+﻿@model MyFirstMAMVCDemo.tblStudent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblStudent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentName1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentName1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentDOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentDOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

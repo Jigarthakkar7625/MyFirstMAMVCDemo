@@ -145,85 +145,86 @@ namespace MyFirstMAMVCDemo.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
+
+        //POST: /Account/Register
+       [HttpPost]
+       [AllowAnonymous]
+       [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
         //[HttpPost]
         //[AllowAnonymous]
         //[ValidateAntiForgeryToken]
         //public async Task<ActionResult> Register(RegisterViewModel model)
         //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //        var result = await UserManager.CreateAsync(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+        //    string cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-        //            // Send an email with this link
-        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        //    SqlConnection con = new SqlConnection("Data Source=LAPTOP-LQDQBGOC;Initial Catalog=MyTestDB;User ID=sa;Password=123");
+        //    //con.Open();
+        //    //SqlCommand cmd = new SqlCommand("insert into tblCourse VALUES ('ASPNET',13)", con);
+        //    //cmd.ExecuteNonQuery();
+        //    //con.Close();
 
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        AddErrors(result);
-        //    }
+        //    SqlDataAdapter da = new SqlDataAdapter("Select * from tblCourse", con);
+        //    DataSet ds = new DataSet();
+        //    da.Fill(ds);
 
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
+        //    //if (ds.Tables.Count > 0)
+        //    //{
+        //    //    foreach (DataRow item in ds.Tables[0].Rows)
+        //    //    {
+        //    //        var a = item["EmpID"];
+        //    //    }
+        //    //}
+
+
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //    //    var result = await UserManager.CreateAsync(user, model.Password);
+        //    //    if (result.Succeeded)
+        //    //    {
+        //    //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+        //    //        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+        //    //        // Send an email with this link
+        //    //        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //    //        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //    //        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+        //    //        return RedirectToAction("Index", "Home");
+        //    //    }
+        //    //    AddErrors(result);
+        //    //}
+
+        //    //// If we got this far, something failed, redisplay form
+        //    //return View(model);
+        //    return Content("jigar");
         //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            string cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            SqlConnection con = new SqlConnection("Data Source=LAPTOP-LQDQBGOC;Initial Catalog=MyTestDB;User ID=sa;Password=123");
-            //con.Open();
-            //SqlCommand cmd = new SqlCommand("insert into tblCourse VALUES ('ASPNET',13)", con);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-
-            SqlDataAdapter da = new SqlDataAdapter("Select * from tblCourse", con);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            //if (ds.Tables.Count > 0)
-            //{
-            //    foreach (DataRow item in ds.Tables[0].Rows)
-            //    {
-            //        var a = item["EmpID"];
-            //    }
-            //}
-
-
-            //if (ModelState.IsValid)
-            //{
-            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-            //    var result = await UserManager.CreateAsync(user, model.Password);
-            //    if (result.Succeeded)
-            //    {
-            //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-            //        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-            //        // Send an email with this link
-            //        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            //        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-            //        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    AddErrors(result);
-            //}
-
-            //// If we got this far, something failed, redisplay form
-            //return View(model);
-            return Content("jigar");
-        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
