@@ -27,5 +27,7 @@ namespace MyFirstMAMVCDemo.Models
 
         [Range(100,400,ErrorMessage ="Please enter propper")]
         public int Age { get; set; }
+
+        public int CountryId { get; set; }
     }
 }

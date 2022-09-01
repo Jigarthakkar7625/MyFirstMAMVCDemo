@@ -1,4 +1,5 @@
-﻿using MyFirstMAMVCDemo.Models;
+﻿using MyFirstMAMVCDemo.Auth;
+using MyFirstMAMVCDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace MyFirstMAMVCDemo.Controllers
     public class UserController : Controller
     {
         // GET: User
+        [AuthenticationAttr]
         public ActionResult Index()
         {
             List<UserModels> um = new List<UserModels> {
@@ -95,6 +97,24 @@ namespace MyFirstMAMVCDemo.Controllers
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult RenderPartial()
+        {
+            try
+            {
+                List<EmpModels> um = new List<EmpModels> {
+                new EmpModels { EmpId = 1, EmpName = "jigar" },
+                new EmpModels { EmpId = 2, EmpName = "jigar123" }
+            };
+                // TODO: Add delete logic here
+
+                return PartialView("PartialViewDemo");
             }
             catch
             {

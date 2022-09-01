@@ -14,6 +14,12 @@ namespace MyFirstMAMVCDemo.Controllers
     {
         public ActionResult Index()
         {
+            if (TempData["tempdata"] != null)
+            {
+                var a = TempData["tempdata"];
+                TempData.Keep("tempdata");
+            }
+
             //foreach (var item in collection) //Cursor
             //{ //Open
 
