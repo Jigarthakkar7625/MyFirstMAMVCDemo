@@ -425,7 +425,7 @@ warning 6002: The table/view 'MyTestDB.dbo.View_1' does not have a primary key d
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MyTestDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyTestDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -472,7 +472,7 @@ warning 6002: The table/view 'MyTestDB.dbo.View_1' does not have a primary key d
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MyTestDBModelStoreContainer" CdmEntityContainer="MyTestDBEntities">
+        <EntityContainerMapping StorageEntityContainer="MyTestDBModelStoreContainer" CdmEntityContainer="MyTestDBEntities1">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="MyTestDBModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">

@@ -12,8 +12,7 @@ namespace MyFirstMAMVCDemo.Models
 {
     public class StudentsController : Controller
     {
-        private MyTestDBEntities db = new MyTestDBEntities();
-
+        private MyTestDBEntities1 db = new MyTestDBEntities1();
         // GET: Students
         public ActionResult Index()
         {

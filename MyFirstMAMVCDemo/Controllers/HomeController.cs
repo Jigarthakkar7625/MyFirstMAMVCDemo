@@ -10,8 +10,10 @@ using System.Web.Mvc;
 namespace MyFirstMAMVCDemo.Controllers
 {
     //[HandleError(View = "Error")]
+    
     public class HomeController : Controller
     {
+        //[OutputCache(Duration = 15)]
         public ActionResult Index()
         {
             if (TempData["tempdata"] != null)

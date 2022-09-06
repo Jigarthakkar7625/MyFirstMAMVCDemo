@@ -15,10 +15,10 @@ namespace MyFirstMAMVCDemo
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MyTestDBEntities : DbContext
+    public partial class MyTestDBEntities1 : DbContext
     {
-        public MyTestDBEntities()
-            : base("name=MyTestDBEntities")
+        public MyTestDBEntities1()
+            : base("name=MyTestDBEntities1")
         {
         }
     
@@ -37,7 +37,7 @@ namespace MyFirstMAMVCDemo
         public virtual DbSet<tblStudent> tblStudents { get; set; }
         public virtual DbSet<View_1> View_1 { get; set; }
     
-        [DbFunction("MyTestDBEntities", "SplitString123")]
+        [DbFunction("MyTestDBEntities1", "SplitString123")]
         public virtual IQueryable<SplitString123_Result> SplitString123(string input, string character)
         {
             var inputParameter = input != null ?
@@ -48,7 +48,7 @@ namespace MyFirstMAMVCDemo
                 new ObjectParameter("Character", character) :
                 new ObjectParameter("Character", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SplitString123_Result>("[MyTestDBEntities].[SplitString123](@Input, @Character)", inputParameter, characterParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SplitString123_Result>("[MyTestDBEntities1].[SplitString123](@Input, @Character)", inputParameter, characterParameter);
         }
     
         public virtual int CursorExample()

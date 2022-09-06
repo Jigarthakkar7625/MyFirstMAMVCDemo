@@ -12,11 +12,18 @@ namespace MyFirstMAMVCDemo
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapMvcAttributeRoutes();
+            //routes.MapMvcAttributeRoutes();
+
+           // routes.MapRoute(
+           //    name: "admin",
+           //    url: "{controller}/{action}/{id}",
+           //    defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+           //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Employee", action = "Create", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
